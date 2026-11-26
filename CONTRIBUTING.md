@@ -2,6 +2,8 @@
 
 Thanks for helping improve these skills. Bug reports, skill requests and pull requests are all welcome.
 
+**AI agents:** also read [AGENTS.md](AGENTS.md), which adds the rules for agent contributions.
+
 Use public issues for technical problems. Remove tokens, personal information and private code from anything you share. For conduct concerns, use the private route in the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Reporting a problem with a skill

@@ -6,6 +6,10 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+### Added
+
+- **`AGENTS.md`** for AI agents contributing to this repository: research and validation rules, scope limits, and what agents may not modify or do. `CLAUDE.md` imports it for Claude Code.
+
 ## [0.5.0] - 2026-11-26
 
 ### Added
