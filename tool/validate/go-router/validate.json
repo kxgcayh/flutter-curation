@@ -1,0 +1,16 @@
+{
+  "report": [
+    "go_router",
+    "go_router_builder"
+  ],
+  "skip": {},
+  "needs_package": {},
+  "tests": [
+    "testing-and-migration__1"
+  ],
+  "imports": {},
+  "smoke_tests": [
+    "test/testing-and-migration__1.dart"
+  ],
+  "requires": {}
+}

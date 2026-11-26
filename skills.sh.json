@@ -21,6 +21,13 @@
       "skills": [
         "dio"
       ]
+    },
+    {
+      "title": "Navigation",
+      "description": "URL-based routing, deep links, guards and nested navigation with go_router.",
+      "skills": [
+        "go-router"
+      ]
     }
   ],
   "notGrouped": "bottom"

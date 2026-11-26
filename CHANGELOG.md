@@ -6,6 +6,23 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+### Added
+
+- **`go-router` skill:** `SKILL.md` plus 7 references (configuration, navigation, redirects and guards, shells, deep links and web, type-safe routes, testing and migration). It includes:
+  - a version table per Flutter SDK, from pub.dev
+  - `go` vs `push`, and auth redirects with `refreshListenable`
+  - `onEnter` guards (`Allow` / `Block`) and their order relative to `redirect`
+  - `StatefulShellRoute` tabs, and full-screen routes above shells
+  - current App Links / universal links setup (Flutter's built-in handler is on by default since 3.27), and the `flutter_web_plugins` dependency for `usePathUrlStrategy`
+  - the go_router_builder 4.x public mixin, and breaking versions 14 → 18
+  - a known build failure: go_router_builder ≤ 4.5.0 with `source_helper` 1.4.0 on Flutter 3.38–3.46, and its fix
+
+### Sources
+
+| Skill | Docs read | Sources | Validated against |
+| --- | --- | --- | --- |
+| `go-router` | 2026-11-26 | [flutter/packages](https://github.com/flutter/packages/tree/da586f5/packages/go_router) at `da586f5` (2026-11-25): go_router README, 12 `doc/` topics, `lib/src`, examples, tests, CHANGELOG; pub.dev constraints for go_router, go_router_builder, material_ui, cupertino_ui; docs.flutter.dev deep-linking (2026-11-23), set-up-app-links and set-up-universal-links (2026-11-10), url-strategies (2026-07-21) | go_router 18.1.4 + go_router_builder 4.5.0 on Flutter 3.44.9 (with `source_helper <1.4.0`), and go_router 17.0.0 + go_router_builder 4.1.2 on Flutter 3.32.8: all 22 blocks compile (including generated type-safe routes), and 2 widget tests pass |
+
 ## [0.3.0] - 2026-11-26
 
 ### Added

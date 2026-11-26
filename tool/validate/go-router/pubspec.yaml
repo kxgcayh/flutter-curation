@@ -1,0 +1,15 @@
+name: go_router_skill_validation
+publish_to: none
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  go_router: '>=16.3.0 <19.0.0'
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: any
+  go_router_builder: any
