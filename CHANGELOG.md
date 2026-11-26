@@ -6,20 +6,27 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-26
+
 ### Added
 
 - **`build-runner` skill:** `SKILL.md` plus 4 references (commands, build.yaml, troubleshooting, CI and source control). It includes:
   - flags and behaviour per build_runner version: `-d` ignored since 2.7, AOT builders and `stop` in 2.14, `--only-check` and auto-reverted hand edits in 2.16
-  - which version Flutter apps actually resolve: Flutter pins `meta`, so a Flutter app on Flutter 3.44 (and 3.32) gets build_runner 2.15.1, while a pure Dart package on the same SDK gets 2.17.1
+  - which version Flutter apps actually resolve: Flutter pins `meta`, so a Flutter app on Flutter 3.44 (and 3.32) gets build_runner 2.15.1, while a pure Dart package on the same SDK gets 2.17.1. On Flutter 3.50 apps get 2.17.1, so `--only-check` is available (confirmed in CI)
   - `build.yaml`: builder keys, `generate_for`, options, `global_options`, the `combining_builder` (`ignore_for_file`, `preamble`, generating into `lib/generated/`), extra sources, `-c` configs
   - troubleshooting from reproduced runs: missing `part` directives, unknown builder keys, generator errors deleting the failed part, version-solving chains
   - CI checks with `--only-check`, or `git diff` before 2.16; generators ignoring `formatter: page_width`; publishing ignored generated files with `.pubignore`; `--workspace`
-- **CI result:** on Flutter 3.50.1, a Flutter app resolves build_runner 2.17.1 (analyzer 14.7.0), so `--only-check` passes both its clean and stale checks there.
 - **Validation of `build.yaml` blocks:** each one is built in its own project, failing on build_runner warnings, and the output is analyzed. `run.py` gained `commands` and `cases/` support.
 
 ### Changed
 
 - **`riverpod` and `go-router`:** link to the build-runner skill for build configuration, version conflicts and CI.
+
+### Sources
+
+| Skill | Docs read | Sources | Validated against |
+| --- | --- | --- | --- |
+| `build-runner` | 2026-11-26 | [dart-lang/build](https://github.com/dart-lang/build/tree/e790ce1) at `e790ce1` (2026-11-24): build_runner README, CHANGELOG, `lib/src/build_runner_command_line.dart`; build_config README, `docs/build_yaml_format.md`. [dart-lang/source_gen](https://github.com/dart-lang/source_gen/tree/cf5b53f) at `cf5b53f` (2026-11-20): README, `build.yaml`, CHANGELOG. pub.dev version metadata for build_runner and the main builders; Flutter's pinned `meta` per release tag | build_runner 2.17.1 + json_serializable 6.15.2 on Flutter 3.50.1 (CI: `--only-check` clean and stale checks pass); 2.15.1 + 6.15.2 on Flutter 3.44.9; 2.15.1 + 6.11.2 on Flutter 3.32.8. All 6 `build.yaml` cases build without unexpected warnings and analyze clean, and the smoke test passes on each |
 
 ## [0.4.0] - 2026-11-26
 
@@ -105,7 +112,8 @@ First release.
   - `valueOrNull` in 3.x code
   - mismatched manual and generated examples on the motivation and testing pages
 
-[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.1.0...v0.2.0

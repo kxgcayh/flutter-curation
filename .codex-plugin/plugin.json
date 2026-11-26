@@ -1,7 +1,7 @@
 {
   "name": "flutter-curation",
-  "version": "0.4.0",
-  "description": "Curated agent skills for popular Flutter packages: Riverpod 3.x, flutter_hooks, dio and go_router.",
+  "version": "0.5.0",
+  "description": "Curated agent skills for popular Flutter packages: Riverpod 3.x, flutter_hooks, dio, go_router and build_runner.",
   "author": {
     "name": "Kautsar Albana",
     "url": "https://github.com/kxgcayh"
@@ -20,6 +20,8 @@
     "dio",
     "http",
     "go_router",
+    "build_runner",
+    "code-generation",
     "navigation"
   ],
   "skills": "./skills/",
