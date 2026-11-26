@@ -6,17 +6,24 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-26
+
 ### Added
 
 - **`flutter-hooks` skill:** `SKILL.md` plus 5 references (primitives, async and Listenables, controllers, custom hooks, migration). It covers the rules of hooks, how `keys` decide re-runs, controller lifecycles, and the flutter_hooks 0.21.4 move of Material/Cupertino controller hooks to `material_hooks` / `cupertino_hooks`.
 - **CI:** `check` runs `tool/check.py` on every PR and push. It covers manifest JSON and version sync, `SKILL.md` front matter and `metadata`, registration in the README and `skills.sh.json`, a changelog entry for the version, and links and code fences.
 - **CI:** `validate-skills` runs `tool/validate/run.py` on PRs that touch `skills/` or `tool/validate/`, and weekly. It compiles every Dart code block and runs the smoke tests on the latest stable Flutter and on Flutter 3.32.8.
 
+### Changed
+
+- **`riverpod` skill:** its hooks section now points to the `flutter-hooks` skill. It was re-validated in CI on Flutter 3.50.1 (Riverpod 3.5.0) and 3.32.8 (Riverpod 3.1.0).
+- **Validation tooling:** `run.py` reports each skill's own packages, runs `build_runner` only for skills that use it, and adds optional dependencies when the SDK can resolve them. The fixture extractor in `tool/validate/flutter-hooks` works out the wrapping itself rather than relying on per-block wrappers.
+
 ### Sources
 
 | Skill | Docs read | Sources | Validated against |
 | --- | --- | --- | --- |
-| `flutter-hooks` | 2026-11-26 | [rrousselGit/flutter_hooks](https://github.com/rrousselGit/flutter_hooks/tree/1c47821/packages/flutter_hooks) at `1c47821` (2026-11-06): README, `lib/src` dartdoc, 45 test files, CHANGELOG; pub.dev for flutter_hooks, material_hooks, cupertino_hooks | flutter_hooks 0.21.3+1 on Flutter 3.44.9 and 3.32.8 (28 of 29 blocks compile; 1 smoke test passes); 0.21.4 is compiled by CI on the latest stable Flutter |
+| `flutter-hooks` | 2026-11-26 | [rrousselGit/flutter_hooks](https://github.com/rrousselGit/flutter_hooks/tree/1c47821/packages/flutter_hooks) at `1c47821` (2026-11-06): README, `lib/src` dartdoc, 45 test files, CHANGELOG; pub.dev for flutter_hooks, material_hooks, cupertino_hooks | flutter_hooks 0.21.4 with material_hooks / cupertino_hooks 0.1.0 on Flutter 3.50.1 (all 30 blocks compile); flutter_hooks 0.21.3+1 on Flutter 3.44.9 and 3.32.8 (28 of 30 compile; the 2 split-package import blocks need Flutter 3.47+). The `useToggle` smoke test passes on all three |
 
 ## [0.1.0] - 2026-11-26
 
@@ -45,5 +52,6 @@ First release.
   - `valueOrNull` in 3.x code
   - mismatched manual and generated examples on the motivation and testing pages
 
-[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/kxgcayh/flutter-curation/releases/tag/v0.1.0

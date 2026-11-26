@@ -2,7 +2,7 @@
 name: riverpod
 description: Write, review, debug or migrate Riverpod 3.x code in Flutter and Dart. Use for riverpod, flutter_riverpod, hooks_riverpod, riverpod_generator and @riverpod code, including Notifier/AsyncNotifier, ref.watch/read/listen, provider lifecycles and auto-dispose, AsyncValue, ProviderScope overrides, testing providers, and migrating to Riverpod 3 from Riverpod 2.x, StateNotifier, ChangeNotifier or package:provider.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   docs-read: "2026-11-26"
   docs-source: "https://riverpod.dev/docs (32 pages) + github.com/rrousselGit/riverpod@a16873f (2026-11-17)"
   validated-against: "riverpod 3.5.0, riverpod_generator 4.0.10, riverpod_annotation 4.0.8 (Flutter 3.44.9); riverpod 3.1.0 (Flutter 3.32.8)"

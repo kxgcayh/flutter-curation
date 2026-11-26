@@ -2,7 +2,7 @@
 name: flutter-hooks
 description: Write, review, debug or migrate Flutter widget lifecycle code that uses flutter_hooks (HookWidget, HookBuilder, useState, useEffect, useMemoized, useRef, useFuture, useStream, useTextEditingController, useAnimationController and other use* hooks). Use for custom hooks, hook ordering and keys, local widget state, controllers, animations, Futures and streams, or converting StatefulWidget code to hooks. In hooks_riverpod widgets, use this skill for local hook behaviour and the riverpod skill for providers and WidgetRef.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   docs-read: "2026-11-26"
   docs-source: "github.com/rrousselGit/flutter_hooks@1c47821 (2026-11-06): packages/flutter_hooks README, lib/src dartdoc, tests, CHANGELOG"
   validated-against: "source reviewed against flutter_hooks 0.21.4; fixtures compiled with 0.21.3+1 on Flutter 3.44.9 and 3.32.8, and with 0.21.4 on the latest stable Flutter in CI"
