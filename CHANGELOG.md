@@ -6,9 +6,18 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-26
+
 ### Added
 
 - **`dio` skill:** `SKILL.md` plus 6 references (requests and responses, interceptors, errors and cancellation, adapters and security, plugins and testing, migration). It covers the shared `Dio` setup, interceptor handler rules, a `QueuedInterceptor` token-refresh example with a separate replay client, `DioException` mapping, cancellation, certificate pinning, testing with a fake `HttpClientAdapter`, and replacing the APIs deprecated before dio 6.0.
+
+### Changed
+
+- **README:** install steps for every agent (including Cursor and skills.sh flags), plus accurate validation and compatibility claims.
+- **CONTRIBUTING:** setup prerequisites, what `tool/check.py` checks, a `validate.json` reference and the version rules.
+- **CODE_OF_CONDUCT:** scope, a private reporting contact, and enforcement.
+- **Validation tooling:** extractors add `flutter_test` only when a test doesn't import its own test package. `tool/validate/dio/` adds hand-written behaviour tests for the token-refresh interceptor.
 
 ### Sources
 
@@ -62,6 +71,7 @@ First release.
   - `valueOrNull` in 3.x code
   - mismatched manual and generated examples on the motivation and testing pages
 
-[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/kxgcayh/flutter-curation/releases/tag/v0.1.0

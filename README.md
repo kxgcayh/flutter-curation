@@ -8,7 +8,7 @@ The skill folders follow the [Agent Skills specification](https://agentskills.io
 
 ## Installation
 
-These commands install the skills from GitHub's default branch. **The current published bundle (v0.2.0) contains Riverpod and Flutter Hooks. The Dio skill below is unreleased.** To try it before release, copy its whole skill folder from a checkout that includes it (see [Manual](#manual)).
+These commands install the skills from GitHub's default branch. The current release is listed on the [releases page](https://github.com/kxgcayh/flutter-curation/releases).
 
 ### Claude Code
 
@@ -76,7 +76,7 @@ cp -R flutter-curation/skills/riverpod .agents/skills/
 | --- | --- | --- |
 | [riverpod](skills/riverpod/SKILL.md) | Write, review, debug or migrate Riverpod 3.x code (`riverpod`, `flutter_riverpod`, `hooks_riverpod`, `riverpod_generator`). Covers providers and notifiers, `ref.watch`/`read`/`listen`, `AsyncValue`, auto-dispose and families, overrides and testing, and migration from Riverpod 2.x, StateNotifier, ChangeNotifier or package:provider. | Migrate this StateNotifier to an AsyncNotifier and add a unit test for it |
 | [flutter-hooks](skills/flutter-hooks/SKILL.md) | Write, review or refactor widgets that use `flutter_hooks` (`HookWidget`, `useState`, `useEffect`, `useMemoized`, `useFuture`, controller and animation hooks), write custom hooks, or convert a `StatefulWidget` to hooks. Covers the rules of hooks, how `keys` decide re-runs, and the 0.21.4 move of Material/Cupertino hooks to `material_hooks`/`cupertino_hooks`. | Convert this StatefulWidget with a TextEditingController and an AnimationController to a HookWidget |
-| [dio](skills/dio/SKILL.md) (unreleased) | Write, review, debug or migrate HTTP code that uses `dio` and its plugins: shared `Dio` setup, interceptors and `QueuedInterceptor` token refresh, `DioException` handling, cancellation, uploads and downloads, adapters, certificate checks, and tests that fake the adapter. Covers dio 4.x → 5.x and the APIs deprecated before 6.0. | Add a dio interceptor that refreshes the access token on 401 and retries the request once |
+| [dio](skills/dio/SKILL.md) | Write, review, debug or migrate HTTP code that uses `dio` and its plugins: shared `Dio` setup, interceptors and `QueuedInterceptor` token refresh, `DioException` handling, cancellation, uploads and downloads, adapters, certificate checks, and tests that fake the adapter. Covers dio 4.x → 5.x and the APIs deprecated before 6.0. | Add a dio interceptor that refreshes the access token on 401 and retries the request once |
 
 ## Compatibility
 
