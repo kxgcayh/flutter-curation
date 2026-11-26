@@ -14,6 +14,7 @@ First release.
 - **Version compatibility table:** the newest Riverpod, riverpod_generator, riverpod_annotation and riverpod_lint for each Dart SDK, from 3.8 (Flutter 3.32) to 3.13+.
 - **Plugin manifests** for Claude Code (with marketplace), Codex, Cursor and Antigravity, plus `.agents/` and `skills.sh.json`.
 - README, CONTRIBUTING, CODE_OF_CONDUCT and an MIT license.
+- **Install checks:** the GitHub install was tested with `codex plugin marketplace add` + `codex plugin add` (installed, enabled, skill present) and with `agy plugin install`. The manifests pass `claude plugin validate` and `agy plugin validate`.
 
 ### Sources
 

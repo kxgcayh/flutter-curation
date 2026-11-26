@@ -17,7 +17,14 @@ The skills work in Claude Code, Codex, Cursor, Antigravity and any agent that su
 
 ### Codex
 
-Install it as a plugin from this repository (it ships `.codex-plugin/plugin.json`), or copy a skill folder into your skills directory:
+Add this repository as a marketplace, then install the plugin:
+
+```sh
+codex plugin marketplace add kxgcayh/flutter-curation
+codex plugin add flutter-curation@flutter-curation
+```
+
+Check it with `codex plugin list`, which should show `installed, enabled`. To use the skill without a plugin, copy the folder instead:
 
 ```sh
 git clone https://github.com/kxgcayh/flutter-curation.git
