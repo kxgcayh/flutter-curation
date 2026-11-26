@@ -9,5 +9,11 @@
       "min": "3.3.2",
       "reason": "container.allProviders(family:) was added in Riverpod 3.3.2"
     }
-  }
+  },
+  "report": [
+    "riverpod",
+    "flutter_riverpod",
+    "riverpod_generator",
+    "riverpod_annotation"
+  ]
 }

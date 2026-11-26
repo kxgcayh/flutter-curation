@@ -7,6 +7,13 @@
       "skills": [
         "riverpod"
       ]
+    },
+    {
+      "title": "Widget state & lifecycle",
+      "description": "Hooks for local widget state, controllers, animations and subscriptions with flutter_hooks.",
+      "skills": [
+        "flutter-hooks"
+      ]
     }
   ],
   "notGrouped": "bottom"

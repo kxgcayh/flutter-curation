@@ -1,6 +1,6 @@
 # Flutter Curation
 
-Curated agent skills for popular Flutter packages.
+Curated agent skills for popular Flutter packages: Riverpod and flutter_hooks so far.
 
 Agents often write Flutter code against outdated APIs: Riverpod 2.x syntax in a 3.x project, legacy providers, or examples that no longer compile. Each skill here teaches an agent how one package works today: which API to pick, the rules that prevent common bugs, and what changed between versions. Each skill has a short `SKILL.md` with detailed reference files that the agent loads only when a task needs them.
 
@@ -62,6 +62,7 @@ Copy any folder under [`skills/`](skills/) into your agent's skills directory, f
 | Skill | Description | Example prompt |
 | --- | --- | --- |
 | [riverpod](skills/riverpod/SKILL.md) | Write, review, debug or migrate Riverpod 3.x code (`riverpod`, `flutter_riverpod`, `hooks_riverpod`, `riverpod_generator`). Covers providers and notifiers, `ref.watch`/`read`/`listen`, `AsyncValue`, auto-dispose and families, overrides and testing, and migration from Riverpod 2.x, StateNotifier, ChangeNotifier or package:provider. | Migrate this StateNotifier to an AsyncNotifier and add a unit test for it |
+| [flutter-hooks](skills/flutter-hooks/SKILL.md) | Write, review or refactor widgets that use flutter_hooks (`HookWidget`, `useState`, `useEffect`, `useMemoized`, `useFuture`, controller and animation hooks), write custom hooks, or convert a `StatefulWidget` to hooks. Covers the rules of hooks, how `keys` decide re-runs, and the 0.21.4 move of Material/Cupertino hooks to `material_hooks`/`cupertino_hooks`. | Convert this StatefulWidget with a TextEditingController and an AnimationController to a HookWidget |
 
 ## Compatibility
 

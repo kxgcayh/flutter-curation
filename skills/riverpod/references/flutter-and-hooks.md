@@ -128,7 +128,7 @@ class EagerInit extends ConsumerWidget {
 
 ## Hooks with Riverpod
 
-Hooks (flutter_hooks) are for local widget state; providers are for shared app state. The Riverpod docs advise newcomers not to start with hooks. Use them when the project already does.
+Hooks (flutter_hooks) are for local widget state; providers are for shared app state. For hooks themselves (every `use*` hook, `keys`, custom hooks), see the `flutter-hooks` skill. The Riverpod docs advise newcomers not to start with hooks. Use them when the project already does.
 
 Rules of hooks:
 

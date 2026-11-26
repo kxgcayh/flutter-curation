@@ -1,0 +1,25 @@
+{
+  "report": [
+    "flutter_hooks"
+  ],
+  "tests": [
+    "custom-hooks__3"
+  ],
+  "imports": {
+    "custom-hooks__3": [
+      "custom-hooks__1"
+    ]
+  },
+  "smoke_tests": [
+    "test/custom-hooks__3.dart"
+  ],
+  "requires": {},
+  "optional_dependencies": [
+    "material_hooks",
+    "cupertino_hooks"
+  ],
+  "needs_package": {
+    "controllers__6": "material_hooks",
+    "controllers__7": "cupertino_hooks"
+  }
+}

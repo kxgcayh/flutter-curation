@@ -1,0 +1,11 @@
+name: flutter_hooks_skill_validation
+publish_to: none
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_hooks: '>=0.21.3 <0.22.0'
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

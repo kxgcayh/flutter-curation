@@ -8,8 +8,15 @@ Each release records, per skill, **when the package's official documentation was
 
 ### Added
 
+- **`flutter-hooks` skill:** `SKILL.md` plus 5 references (primitives, async and Listenables, controllers, custom hooks, migration). It covers the rules of hooks, how `keys` decide re-runs, controller lifecycles, and the flutter_hooks 0.21.4 move of Material/Cupertino controller hooks to `material_hooks` / `cupertino_hooks`.
 - **CI:** `check` runs `tool/check.py` on every PR and push. It covers manifest JSON and version sync, `SKILL.md` front matter and `metadata`, registration in the README and `skills.sh.json`, a changelog entry for the version, and links and code fences.
 - **CI:** `validate-skills` runs `tool/validate/run.py` on PRs that touch `skills/` or `tool/validate/`, and weekly. It compiles every Dart code block and runs the smoke tests on the latest stable Flutter and on Flutter 3.32.8.
+
+### Sources
+
+| Skill | Docs read | Sources | Validated against |
+| --- | --- | --- | --- |
+| `flutter-hooks` | 2026-11-26 | [rrousselGit/flutter_hooks](https://github.com/rrousselGit/flutter_hooks/tree/1c47821/packages/flutter_hooks) at `1c47821` (2026-11-06): README, `lib/src` dartdoc, 45 test files, CHANGELOG; pub.dev for flutter_hooks, material_hooks, cupertino_hooks | flutter_hooks 0.21.3+1 on Flutter 3.44.9 and 3.32.8 (28 of 29 blocks compile; 1 smoke test passes); 0.21.4 is compiled by CI on the latest stable Flutter |
 
 ## [0.1.0] - 2026-11-26
 

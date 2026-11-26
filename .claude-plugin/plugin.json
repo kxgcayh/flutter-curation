@@ -2,7 +2,7 @@
   "name": "flutter-curation",
   "displayName": "Flutter Curation",
   "version": "0.1.0",
-  "description": "Curated agent skills for popular Flutter packages, starting with Riverpod 3.x.",
+  "description": "Curated agent skills for popular Flutter packages: Riverpod 3.x and flutter_hooks.",
   "author": {
     "name": "Kautsar Albana",
     "url": "https://github.com/kxgcayh"
@@ -15,6 +15,7 @@
     "dart",
     "riverpod",
     "skills",
-    "state-management"
+    "state-management",
+    "flutter-hooks"
   ]
 }

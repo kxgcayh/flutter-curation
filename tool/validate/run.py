@@ -34,18 +34,39 @@ def resolved(lock_text, package):
 
 def validate(skill_dir):
     config = json.loads((skill_dir / "validate.json").read_text())
-    fail = False
 
-    for cmd in (["flutter", "pub", "get"], ["python3", "extract.py"], ["dart", "run", "build_runner", "build"]):
-        r = run(cmd, skill_dir)
+    steps = [["flutter", "pub", "get"], ["python3", "extract.py"]]
+    if re.search(r"(?m)^\s+build_runner:", (skill_dir / "pubspec.yaml").read_text()):
+        steps.append(["dart", "run", "build_runner", "build"])
+    pubspec = skill_dir / "pubspec.yaml"
+    original_pubspec = pubspec.read_text()
+    try:
+        r = run(steps[0], skill_dir)
         if r.returncode:
             print(r.stdout[-4000:], r.stderr[-4000:])
             return False
-        if cmd[1] == "extract.py":
-            print(r.stdout.strip())
+        # Packages that only resolve on newer SDKs; skipped quietly when they don't.
+        for package in config.get("optional_dependencies", []):
+            added = run(["flutter", "pub", "add", package], skill_dir).returncode == 0
+            print(f"optional  {package}: {'added' if added else 'not available on this SDK'}")
+        for cmd in steps[1:]:
+            r = run(cmd, skill_dir)
+            if r.returncode:
+                print(r.stdout[-4000:], r.stderr[-4000:])
+                return False
+            if cmd[1] == "extract.py":
+                print(r.stdout.strip())
+        return analyze_and_test(skill_dir, config)
+    finally:
+        pubspec.write_text(original_pubspec)
+
+
+def analyze_and_test(skill_dir, config):
+    fail = False
 
     lock = (skill_dir / "pubspec.lock").read_text()
-    versions = {p: resolved(lock, p) for p in ("riverpod", "flutter_riverpod", "riverpod_generator", "riverpod_annotation")}
+    report = config.get("report", ["riverpod", "flutter_riverpod", "riverpod_generator", "riverpod_annotation"])
+    versions = {p: resolved(lock, p) for p in report}
     print("resolved:", ", ".join(f"{k} {v}" for k, v in versions.items()))
 
     r = run(["dart", "analyze", "--format", "machine"], skill_dir)
