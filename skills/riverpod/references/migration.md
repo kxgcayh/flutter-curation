@@ -14,7 +14,7 @@ Upgrade carefully: some changes are behavioural, not compile errors. Work throug
 | `ChangeNotifierProvider` | Flutter-only: `package:flutter_riverpod/legacy.dart` or `package:hooks_riverpod/legacy.dart` | Same. |
 | `AsyncValue.valueOrNull` | `AsyncValue.value` | Global replace. The old `value` (which threw on error) is gone; use `requireValue` where you want a throw. |
 | `ProviderObserver.didUpdateProvider(provider, prev, next, container)` | `didUpdateProvider(ProviderObserverContext context, prev, next)` | Same for every observer method. |
-| errors rethrown as-is | wrapped in `ProviderException` when read via `read`/`watch`/`.future` | Update `try/catch`: `on ProviderException catch (e) { e.exception ... }`. `AsyncValue.error` is unchanged. |
+| errors rethrown as-is | a throwing read or failed `.future` usually wraps them in `ProviderException` (import it from `misc.dart`); since 3.5, disposal before the first value can complete `.future` with `ProviderDisposedException` | Update `try/catch`: `on ProviderException catch (e) { e.exception ... }`. `AsyncValue.error` is unchanged. |
 | no retry | automatic retry (up to 10 retries after the first attempt, with backoff) | Decide per app: keep it, customise it, or disable with `retry: (_, _) => null` on `ProviderScope`. |
 | listeners always active | out-of-view widgets (`TickerMode` false) pause their listeners | Streams and polling stop on covered routes. Wrap in `TickerMode(enabled: true)` if something must keep running. |
 | mixed `==`/`identical` filtering | everything filters with `==` | Stream events equal to the previous one are dropped. Override `updateShouldNotify` if needed. |

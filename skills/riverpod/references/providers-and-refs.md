@@ -84,7 +84,7 @@ class Cart extends _$Cart {
 }
 ```
 
-This example assumes writes don't overlap. If two `add` calls can run at once, queue them or disable the button while one is pending (a mutation does this for you, see experimental.md).
+This example assumes writes don't overlap. Disable the submit control while a write is pending, or queue writes in the notifier. A mutation exposes the pending state for the UI to use (see experimental.md), but it doesn't serialize writes: concurrent mutation callbacks can still run.
 
 Rules:
 
@@ -163,12 +163,13 @@ ref.listen<AsyncValue<void>>(checkoutProvider, (prev, next) {
 ```
 
 - **Provider `Ref.listen`** returns a `ProviderSubscription<T>` with `pause()`, `resume()` and `close()`. It accepts `fireImmediately`, `onError` and `weak`. A weak listener neither initialises its target nor keeps it alive.
-- **Widget `WidgetRef.listen`** returns `void` and accepts `onError`. Use `WidgetRef.listenManual` to register in lifecycle methods, or when you need to cancel early.
+- **Widget `WidgetRef.listen`** returns `void` and accepts `onError`. Use `WidgetRef.listenManual` to register in lifecycle methods, or when you need to cancel early. In Flutter Riverpod 3.2+, both `WidgetRef.listen` and `WidgetRef.listenManual` also accept `weak: true`.
 - **Don't use `read` to optimise.** It silently desynchronises the UI when the provider changes later. Use `select` instead.
 
 ## invalidate vs refresh
 
 - **`ref.invalidate(p)`** marks the provider dirty. It recomputes on its next read, or at the next frame if something is listening. If nobody listens, it is disposed.
+- **`ref.invalidate(p, asReload: true)`** requests reload semantics explicitly: the next loading state matches `AsyncLoading` (keeping the previous data in `value`), even though the refresh was triggered by hand.
 - **`ref.refresh(p)`** is `invalidate` + `read`: it recomputes immediately and returns the new value. Use the return value (a lint warns if you don't), e.g. `onRefresh: () => ref.refresh(p.future)`.
 - **`ref.invalidateSelf()`** works inside a provider or notifier.
 - **Families:** `ref.invalidate(userProvider)` invalidates every argument, while `ref.invalidate(userProvider('42'))` invalidates one.
@@ -198,9 +199,11 @@ Stream<Message> chat(Ref ref, String roomId) {
 ## Errors
 
 - **A provider that throws exposes `AsyncError`** if it's async; a sync one rethrows on read.
-- **In 3.x, errors read through `ref.read`, `ref.watch` or `.future` are wrapped in `ProviderException`.** To catch a specific type:
+- **When a provider computation fails, a throwing read or its failed `.future` usually wraps the original error in `ProviderException`.** Reading an async provider itself gives an `AsyncValue` whose `error` holds the original failure. Since Riverpod 3.5, disposing a provider before it emits can complete `.future` directly with `ProviderDisposedException`. `ProviderException` is imported from `package:flutter_riverpod/misc.dart` (or `hooks_riverpod/` or `riverpod/`). To catch a specific type:
 
 ```dart
+import 'package:flutter_riverpod/misc.dart' show ProviderException; // or hooks_riverpod/ or riverpod/
+
 try {
   await ref.read(orderProvider.future);
 } on ProviderException catch (e) {

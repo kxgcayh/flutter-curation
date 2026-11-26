@@ -83,6 +83,8 @@ With code generation and `riverpod_lint`, scoping is checked statically. Widgets
 ## ProviderObserver
 
 ```dart
+import 'package:flutter_riverpod/misc.dart' show ProviderException; // or hooks_riverpod/ or riverpod/
+
 final class Logger extends ProviderObserver {
   @override
   void didUpdateProvider(ProviderObserverContext context, Object? previousValue, Object? newValue) {
@@ -124,7 +126,7 @@ test('cart adds items', () async {
 
 - **Use `ProviderContainer.test()`** (it is disposed automatically) and create a new container per test. Never share one. It replaces the hand-written 2.x `createContainer` helper.
 - **Listen to auto-dispose providers rather than only `read`ing them,** or their state can be disposed mid-test. Use `container.listen(...)` and `sub.read()`.
-- **Await async providers with `expectLater(container.read(p.future), completion(x))`,** or with `throwsA(...)`. Remember that errors read through `.future` are wrapped in `ProviderException`.
+- **Await async providers with `expectLater(container.read(p.future), completion(x))`,** or with `throwsA(...)`. Remember that a failed `.future` usually wraps the error in `ProviderException`, and since 3.5 a provider disposed before it emits completes `.future` with `ProviderDisposedException`.
 - **Record changes:** `container.listen(p, (prev, next) => log.add(next))`, then assert on `log`. You can also verify with mocktail or mockito.
 - **`retry: (_, _) => null` is optional,** but makes failure tests deterministic.
 

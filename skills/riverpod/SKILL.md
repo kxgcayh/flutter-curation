@@ -22,7 +22,7 @@ Read `pubspec.yaml` (and `pubspec.lock` when present) and match the project's ex
 
 - **Follow the project's syntax.** If it uses code generation, write `@riverpod`. If not, write manual providers. Don't add code generation on your own: the Riverpod docs recommend it only when a project already runs `build_runner` for other packages (Freezed, json_serializable).
 - **New project, no preference given:** for Flutter, use manual syntax with `flutter_riverpod`. For pure Dart, use `riverpod`. Consider adding the optional `riverpod_lint` plugin. Setup details are in [flutter-and-hooks.md](references/flutter-and-hooks.md).
-- **After editing `@riverpod` code,** run `dart run build_runner build -d` (or check that `watch` is running). Never hand-edit `.g.dart` files.
+- **After editing `@riverpod` code,** run `dart run build_runner build` (or check that `watch` is running). Never hand-edit `.g.dart` files.
 
 ## Step 2: choose the provider
 
@@ -104,7 +104,7 @@ More is in [async-and-performance.md](references/async-and-performance.md).
 ## Behaviour that changed in 3.0 (often missed)
 
 - **Failing providers retry automatically:** up to 10 times, with backoff from 200 ms to 6.4 s. `Error`s and `ProviderException`s are not retried. Customise it with `retry:` on the provider or on the `ProviderScope`.
-- **Errors read through `ref.read` or `.future` arrive wrapped in a `ProviderException`.** `AsyncValue.error`, `ref.listen(onError:)` and observers still receive the original error.
+- **When a provider computation fails, a throwing read or its failed `.future` usually wraps the original error in `ProviderException`.** Reading an async provider itself gives an `AsyncValue` whose `error` holds the original failure. Since Riverpod 3.5, disposing a provider before it emits can complete `.future` directly with `ProviderDisposedException`. `ProviderException` is imported from `package:flutter_riverpod/misc.dart` (or `hooks_riverpod/` or `riverpod/`). `ref.listen(onError:)` and observers also receive the original error.
 - **Listeners in widgets that aren't visible are paused** (this follows `TickerMode`), and so are providers used only by paused providers.
 - **All providers filter updates with `==`.** Override `updateShouldNotify` on a Notifier to change that.
 - **Interfaces were merged:** there is one `Ref` with no type parameter (no `FooRef` subclasses), no `AutoDispose*` classes and no `Family*` notifier classes.

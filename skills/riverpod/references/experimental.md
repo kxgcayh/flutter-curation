@@ -52,7 +52,9 @@ class AddTodoButton extends ConsumerWidget {
 
 - **States:** `MutationIdle`, `MutationPending`, `MutationError` and `MutationSuccess` form a sealed set, so you can switch over them exhaustively.
 - **Keyed instances:** `final removeTodo = Mutation<void>(); removeTodo(todo.id)` gives one instance per id. This lets list items show their own spinners.
-- **Reset:** a mutation returns to idle once it completes and has no listeners, or when you call `addTodo.reset(ref)`.
+- **Reset:** a mutation returns to idle once it completes and has no listeners, or when you call `addTodo.reset(ref)`. In Riverpod 3.3.2+, an in-flight result doesn't replace the idle state after a `reset`.
+- **Container disposed mid-run:** a successful in-flight callback still returns normally, but its UI state is gone.
+- **No serialization:** starting a second `run` while one is pending supersedes the displayed state, but both callbacks run. Disable the button while `MutationPending` if writes must not overlap.
 - **Observers see it too:** `ProviderObserverContext.mutation` tells an observer which mutation caused an update.
 - **`run` rethrows failures** after recording them as `MutationError`. Catch them (as above), or they surface as uncaught errors.
 - **Still put the logic in a Notifier method.** The mutation only wraps the call.
@@ -117,4 +119,5 @@ class Todos extends AsyncNotifier<List<Todo>> {
 - **The default cache time is 2 days,** because persistence is designed as a cache for IO. For user preferences, use `unsafe_forever`, and delete the stored entry yourself if the provider is ever removed.
 - **`destroyKey`** throws away old persisted data when the format changes. Riverpod has no real data migration.
 - **`AsyncValue.isFromCache`** tells the UI that the value came from storage rather than the server.
+- **During restore plus a network request,** cached data may be attached to an `AsyncLoading` value. Render it by checking `value` and `isFromCache`. Awaiting the provider's `.future` waits for a fresh result by default.
 - **`persist(...).future` is a nullable `Future<void>`.** To start from the persisted value instead of fetching first, await it so the restore finishes, then inspect `state` and decide whether to fetch.

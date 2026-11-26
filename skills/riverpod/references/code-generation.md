@@ -18,8 +18,8 @@ class TodoList extends _$TodoList {
 ```
 
 ```sh
-dart run build_runner watch -d   # during development
-dart run build_runner build -d   # one-off, e.g. in CI or after an edit
+dart run build_runner watch   # during development
+dart run build_runner build   # one-off, e.g. in CI or after an edit
 ```
 
 - **Never edit `*.g.dart` by hand.** If generated code is missing or stale, re-run the build.
@@ -48,6 +48,8 @@ dart run build_runner build -d   # one-off, e.g. in CI or after an edit
 
 ## Annotation options
 
+Each line is a separate annotation option. Place one above its provider declaration.
+
 ```dart
 @Riverpod(keepAlive: true)          // disable auto-dispose (it is ON by default with codegen)
 @Riverpod(dependencies: [])         // mark as scopable (see scopes-and-testing.md)
@@ -56,6 +58,8 @@ dart run build_runner build -d   # one-off, e.g. in CI or after an edit
 ```
 
 ```dart
+import 'package:flutter_riverpod/misc.dart' show ProviderException; // or hooks_riverpod/ or riverpod/
+
 Duration? myRetry(int retryCount, Object error) {
   if (retryCount >= 5 || error is ProviderException) return null;
   return Duration(milliseconds: 200 * (1 << retryCount));

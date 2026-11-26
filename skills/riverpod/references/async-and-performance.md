@@ -38,6 +38,7 @@ return orders.when(
   - A forced refresh (`refresh`/`invalidate`) with previous data or error still matches `AsyncData` or `AsyncError`, with `isLoading == true` and `isRefreshing` set.
   - A dependency reload matches `AsyncLoading` with `isReloading` set, but `value` still holds the previous data.
   - An initial load with no prior state sets neither flag.
+  - `ref.invalidate(p, asReload: true)` gives reload semantics (`AsyncLoading` with previous data) for a manual refresh.
 - **Keep previous data on screen during both,** and show a loading fallback only when no data or error is visible:
 
 ```dart
@@ -46,7 +47,7 @@ return switch (orders) {
       OrderList(value),
       if (orders.isLoading) const LinearProgressIndicator(), // refresh or reload
     ]),
-  AsyncValue(:final error?) => ErrorView(error, orders.stackTrace),
+  AsyncValue(:final error?) => ErrorView(error, orders.stackTrace ?? StackTrace.empty),
   _ => const Center(child: CircularProgressIndicator()), // first load
 };
 ```
@@ -60,7 +61,11 @@ return switch (orders) {
 ```dart
 RefreshIndicator(
   onRefresh: () => ref.refresh(ordersProvider.future),
-  child: ListView(...), // must be scrollable, even when empty or in an error state
+  // Must be scrollable, even when empty or in an error state.
+  child: ListView(
+    physics: const AlwaysScrollableScrollPhysics(),
+    children: const [ListTile(title: Text('Orders'))],
+  ),
 )
 ```
 
@@ -73,6 +78,8 @@ RefreshIndicator(
 - **`await ref.watch(p.future)` waits through retries** and completes once the provider succeeds or the retries run out.
 
 ```dart
+import 'package:flutter_riverpod/misc.dart' show ProviderException; // or hooks_riverpod/ or riverpod/
+
 Duration? retry(int retryCount, Object error) {
   if (retryCount >= 5) return null;              // stop
   if (error is ProviderException) return null;   // dependency failed, not us
