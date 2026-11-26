@@ -95,7 +95,7 @@ Each skill's front matter records when its docs were read (`metadata.docs-read`)
 
 ## Contributing
 
-Bug reports, skill requests and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Bug reports, skill requests and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). AI agents contributing to this repository should also read [AGENTS.md](AGENTS.md).
 
 ## Code of Conduct
 

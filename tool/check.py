@@ -14,7 +14,7 @@ PLUGIN_MANIFESTS = [
 ]
 OTHER_JSON = [".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", ".agents/skills.json", "skills.sh.json"]
 REQUIRED_METADATA = ["version", "docs-read", "docs-source", "validated-against"]
-DOCS = ["README.md", "CONTRIBUTING.md", "CHANGELOG.md", "CODE_OF_CONDUCT.md"]
+DOCS = ["README.md", "AGENTS.md", "CONTRIBUTING.md", "CHANGELOG.md", "CODE_OF_CONDUCT.md"]
 
 errors = []
 
