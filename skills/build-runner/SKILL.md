@@ -5,7 +5,7 @@ metadata:
   version: "0.5.0"
   docs-read: "2026-11-26"
   docs-source: "github.com/dart-lang/build@e790ce1 (2026-11-24): build_runner README, CHANGELOG, lib/src/build_runner_command_line.dart; build_config README, docs/build_yaml_format.md; github.com/dart-lang/source_gen@cf5b53f (2026-11-20): README, build.yaml, CHANGELOG; pub.dev version metadata"
-  validated-against: "build_runner 2.15.1 + json_serializable 6.15.2 on Flutter 3.44.9; 2.15.1 + 6.11.2 on Flutter 3.32.8; 2.17.1 in a pure Dart package on Dart 3.12"
+  validated-against: "build_runner 2.17.1 + json_serializable 6.15.2 on Flutter 3.50.1 (CI, --only-check clean and stale); 2.15.1 + 6.15.2 on Flutter 3.44.9; 2.15.1 + 6.11.2 on Flutter 3.32.8"
 ---
 
 # build_runner
@@ -33,7 +33,7 @@ metadata:
 | 2.16+ | a build reverts hand edits to generated files; `--only-check` for CI; `--keep-modified-outputs` |
 | 2.17+ | builders can opt in to add or remove their own `part` directive (source_gen builders such as json_serializable don't yet) |
 
-**Which version you get depends on the SDK, and on Flutter's pinned `meta`.** build_runner 2.15.2+ needs Dart 3.11 and analyzer ≥ 13.3; 2.16.2+ needs analyzer ≥ 14.3. A Flutter app on Flutter 3.44 resolves **2.15.1**: Flutter pins `meta` 1.18.0, which caps analyzer at 13.0.0. A pure Dart package on the same SDK resolves 2.17.1. Flutter 3.32 also gets 2.15.1. So don't assume `--only-check` exists: read the lock file, or run `dart run build_runner build --help`.
+**Which version you get depends on the SDK, and on Flutter's pinned `meta`.** build_runner 2.15.2+ needs Dart 3.11 and analyzer ≥ 13.3; 2.16.2+ needs analyzer ≥ 14.3. A Flutter app on Flutter 3.44 resolves **2.15.1**: Flutter pins `meta` 1.18.0, which caps analyzer at 13.0.0. A pure Dart package on the same SDK resolves 2.17.1. Flutter 3.32 also gets 2.15.1, and Flutter 3.50 gets 2.17.1. So don't assume `--only-check` exists: read the lock file, or run `dart run build_runner build --help`.
 
 ## Commands
 

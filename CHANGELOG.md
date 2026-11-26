@@ -14,6 +14,7 @@ Each release records, per skill, **when the package's official documentation was
   - `build.yaml`: builder keys, `generate_for`, options, `global_options`, the `combining_builder` (`ignore_for_file`, `preamble`, generating into `lib/generated/`), extra sources, `-c` configs
   - troubleshooting from reproduced runs: missing `part` directives, unknown builder keys, generator errors deleting the failed part, version-solving chains
   - CI checks with `--only-check`, or `git diff` before 2.16; generators ignoring `formatter: page_width`; publishing ignored generated files with `.pubignore`; `--workspace`
+- **CI result:** on Flutter 3.50.1, a Flutter app resolves build_runner 2.17.1 (analyzer 14.7.0), so `--only-check` passes both its clean and stale checks there.
 - **Validation of `build.yaml` blocks:** each one is built in its own project, failing on build_runner warnings, and the output is analyzed. `run.py` gained `commands` and `cases/` support.
 
 ### Changed
