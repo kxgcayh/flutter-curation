@@ -24,6 +24,7 @@ dart run build_runner build   # one-off, e.g. in CI or after an edit
 
 - **Never edit `*.g.dart` by hand.** If generated code is missing or stale, re-run the build.
 - **Analyzer errors like `_$TodoList isn't defined` or `todoListProvider isn't defined`** usually mean the build hasn't run, or the `part` directive is wrong.
+- **For `build.yaml` options, slow builds, version conflicts between generators, and CI checks,** use the build-runner skill.
 
 ## Declarations
 

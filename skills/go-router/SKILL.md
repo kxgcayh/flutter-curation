@@ -2,7 +2,7 @@
 name: go-router
 description: Set up, write, review, debug or migrate Flutter navigation that uses go_router (GoRouter, GoRoute, MaterialApp.router, context.go/push/pop, path and query parameters, named routes, redirect, onEnter guards, refreshListenable auth redirects, ShellRoute, StatefulShellRoute tabs, deep links with App Links and universal links, web URL strategy, transitions, state restoration, go_router_builder type-safe routes). Use for go_router navigation, typed routes, route guards, shell navigator state and platform links, and for upgrading go_router across breaking versions 14 to 18. Use the riverpod skill for auth-state ownership, flutter-hooks for widget lifecycles, and dio for HTTP authentication and token refresh.
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
   docs-read: "2026-11-26"
   docs-source: "github.com/flutter/packages@da586f5 (2026-11-25): packages/go_router README, doc/*.md topics, lib/src, example/, test/, CHANGELOG; docs.flutter.dev deep-linking, set-up-app-links, set-up-universal-links, url-strategies (updated 2026-07 to 2026-11)"
   validated-against: "go_router 18.1.4 + go_router_builder 4.5.3 on Flutter 3.50.1; 18.1.4 + 4.5.0 on Flutter 3.44.9 (with source_helper <1.4.0); 17.0.0 + 4.1.2 on Flutter 3.32.8"
