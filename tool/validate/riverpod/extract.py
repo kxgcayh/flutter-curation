@@ -136,6 +136,7 @@ def write(path, key, code, source, line):
     if key == ("scopes", 10):
         prefixes[-1] = "import 'package:riverpod_skill_validation/stubs.dart' hide Counter;"
     parts = f"part '{path.stem}.g.dart';\n" if re.search(r"@riverpod\b|@Riverpod\(", code + extra) else ""
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(f"// Extracted from {source}:{line}\n// ignore_for_file: unused_import, unused_local_variable, unused_element, unnecessary_import\n"
                     + "\n".join(dict.fromkeys(prefixes + imports)) + "\n" + parts + "\n" + extra + "\n" + code)
     return note
