@@ -1,0 +1,7 @@
+{
+  "name": "flutter-curation",
+  "version": "0.1.0",
+  "description": "Agent skills for popular Flutter packages, starting with Riverpod 3.x.",
+  "license": "MIT",
+  "keywords": ["flutter", "dart", "riverpod", "skills"]
+}

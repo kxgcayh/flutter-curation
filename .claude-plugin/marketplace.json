@@ -1,0 +1,11 @@
+{
+  "name": "flutter-curation",
+  "owner": { "name": "Kautsar" },
+  "plugins": [
+    {
+      "name": "flutter-curation",
+      "source": "./",
+      "description": "Agent skills for popular Flutter packages, starting with Riverpod 3.x."
+    }
+  ]
+}
