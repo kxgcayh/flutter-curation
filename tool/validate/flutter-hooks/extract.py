@@ -62,7 +62,8 @@ def render(name, code, config):
     if is_test:
         imports = [i.replace("'stubs.dart'", "'../lib/stubs.dart'") for i in imports]
         imports = [re.sub(r"import '(\w[\w-]*__\d+)\.dart';", r"import '../lib/\1.dart';", i) for i in imports]
-        imports.append("import 'package:flutter_test/flutter_test.dart';")
+        if not any("package:test/" in i or "package:flutter_test/" in i for i in imports):
+            imports.append("import 'package:flutter_test/flutter_test.dart';")
     if (DECL.search(body) and not STATEMENT.search(body)) or is_test:
         wrapped = body
     else:

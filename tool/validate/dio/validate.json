@@ -1,0 +1,26 @@
+{
+  "report": [
+    "dio",
+    "dio_cookie_manager",
+    "dio_http2_adapter",
+    "dio_compatibility_layer"
+  ],
+  "optional_dependencies": [
+    "native_dio_adapter"
+  ],
+  "needs_package": {
+    "adapters-and-security__4": "native_dio_adapter"
+  },
+  "tests": [
+    "plugins-and-testing__3"
+  ],
+  "imports": {},
+  "smoke_tests": [
+    "test/plugins-and-testing__3.dart",
+    "test/refresh_interceptor_test.dart"
+  ],
+  "requires": {},
+  "skip": {
+    "migration__1": "dio 4.x 'Before' example (intentionally old API)"
+  }
+}

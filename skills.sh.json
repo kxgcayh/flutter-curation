@@ -14,6 +14,13 @@
       "skills": [
         "flutter-hooks"
       ]
+    },
+    {
+      "title": "Networking",
+      "description": "HTTP clients, interceptors, error handling and testing with dio.",
+      "skills": [
+        "dio"
+      ]
     }
   ],
   "notGrouped": "bottom"

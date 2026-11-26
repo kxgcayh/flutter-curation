@@ -7,13 +7,14 @@
   "plugins": [
     {
       "name": "flutter-curation",
-      "description": "Curated agent skills for popular Flutter packages: Riverpod 3.x and flutter_hooks.",
+      "description": "Curated agent skills for popular Flutter packages: Riverpod 3.x, flutter_hooks and dio.",
       "category": "development",
       "tags": [
         "flutter",
         "dart",
         "riverpod",
-        "flutter-hooks"
+        "flutter-hooks",
+        "dio"
       ],
       "source": "./"
     }

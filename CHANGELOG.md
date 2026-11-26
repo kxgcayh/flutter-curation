@@ -6,13 +6,23 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+### Added
+
+- **`dio` skill:** `SKILL.md` plus 6 references (requests and responses, interceptors, errors and cancellation, adapters and security, plugins and testing, migration). It covers the shared `Dio` setup, interceptor handler rules, a `QueuedInterceptor` token-refresh example with a separate replay client, `DioException` mapping, cancellation, certificate pinning, testing with a fake `HttpClientAdapter`, and replacing the APIs deprecated before dio 6.0.
+
+### Sources
+
+| Skill | Docs read | Sources | Validated against |
+| --- | --- | --- | --- |
+| `dio` | 2026-11-26 | [cfug/dio](https://github.com/cfug/dio/tree/f1bef46) at `f1bef46` (2026-10-19): dio README, migration guide, plugin docs, `lib/src`, tests, examples, plugin READMEs and sources, compatibility policy | dio 5.11.1, dio_cookie_manager 3.5.0, dio_http2_adapter 2.9.0, dio_compatibility_layer 0.1.1 on Flutter 3.44.9 (native_dio_adapter 1.8.0) and 3.32.8 (native_dio_adapter 1.7.0): 23 of 24 blocks compile (the skipped one is the intentional dio 4.x "Before" example). 5 tests pass, including behaviour tests for the token-refresh interceptor: 3 concurrent 401s refresh exactly once, a failing replay ends with an error instead of hanging, and the token isn't sent to other origins |
+
 ## [0.2.0] - 2026-11-26
 
 ### Added
 
 - **`flutter-hooks` skill:** `SKILL.md` plus 5 references (primitives, async and Listenables, controllers, custom hooks, migration). It covers the rules of hooks, how `keys` decide re-runs, controller lifecycles, and the flutter_hooks 0.21.4 move of Material/Cupertino controller hooks to `material_hooks` / `cupertino_hooks`.
-- **CI:** `check` runs `tool/check.py` on every PR and push. It covers manifest JSON and version sync, `SKILL.md` front matter and `metadata`, registration in the README and `skills.sh.json`, a changelog entry for the version, and links and code fences.
-- **CI:** `validate-skills` runs `tool/validate/run.py` on PRs that touch `skills/` or `tool/validate/`, and weekly. It compiles every Dart code block and runs the smoke tests on the latest stable Flutter and on Flutter 3.32.8.
+- **CI:** the repository check (`tool/check.py`) runs on pull requests and on pushes to `main`.
+- **CI:** snippet validation (`tool/validate/run.py`) runs when pull requests or pushes to `main` change skills, the validation tooling or its workflow, plus weekly and on manual dispatch. It analyzes the eligible fixtures and runs the selected smoke tests on the latest stable Flutter and on Flutter 3.32.8.
 
 ### Changed
 
@@ -35,7 +45,7 @@ First release.
 - **Version compatibility table:** the newest Riverpod, riverpod_generator, riverpod_annotation and riverpod_lint for each Dart SDK, from 3.8 (Flutter 3.32) to 3.13+.
 - **Plugin manifests** for Claude Code (with marketplace), Codex, Cursor and Antigravity, plus `.agents/` and `skills.sh.json`.
 - README, CONTRIBUTING, CODE_OF_CONDUCT and an MIT license.
-- **Install checks:** the GitHub install was tested with `codex plugin marketplace add` + `codex plugin add` (installed, enabled, skill present) and with `agy plugin install`. The manifests pass `claude plugin validate` and `agy plugin validate`.
+- **Install checks:** the Codex and Antigravity installs were tested. The Claude Code and Antigravity manifest validators passed.
 
 ### Sources
 
