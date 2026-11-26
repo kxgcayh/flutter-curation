@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Dart / Flutter
+.dart_tool/
+pubspec.lock
+
+# IDEs
+.idea/
+*.iml
+
+# Claude Code personal overrides
+**/.claude/settings.local.json
+
+# Release archives
+dist/

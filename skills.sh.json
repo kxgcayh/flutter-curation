@@ -1,0 +1,13 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "State management",
+      "description": "Providers, notifiers, async state, testing and migrations for Riverpod 3.x.",
+      "skills": [
+        "riverpod"
+      ]
+    }
+  ],
+  "notGrouped": "bottom"
+}

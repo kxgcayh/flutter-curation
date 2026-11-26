@@ -1,11 +1,20 @@
 {
   "name": "flutter-curation",
-  "owner": { "name": "Kautsar" },
+  "owner": {
+    "name": "Kautsar Albana"
+  },
+  "description": "Marketplace for Flutter Curation: agent skills for popular Flutter packages",
   "plugins": [
     {
       "name": "flutter-curation",
-      "source": "./",
-      "description": "Agent skills for popular Flutter packages, starting with Riverpod 3.x."
+      "description": "Curated agent skills for popular Flutter packages, starting with Riverpod 3.x.",
+      "category": "development",
+      "tags": [
+        "flutter",
+        "dart",
+        "riverpod"
+      ],
+      "source": "./"
     }
   ]
 }
