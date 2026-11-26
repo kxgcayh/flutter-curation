@@ -5,7 +5,7 @@ metadata:
   version: "0.4.0"
   docs-read: "2026-11-26"
   docs-source: "github.com/flutter/packages@da586f5 (2026-11-25): packages/go_router README, doc/*.md topics, lib/src, example/, test/, CHANGELOG; docs.flutter.dev deep-linking, set-up-app-links, set-up-universal-links, url-strategies (updated 2026-07 to 2026-11)"
-  validated-against: "go_router 18.1.4 + go_router_builder 4.5.0 on Flutter 3.44.9 (with source_helper <1.4.0); go_router 17.0.0 + go_router_builder 4.1.2 on Flutter 3.32.8"
+  validated-against: "go_router 18.1.4 + go_router_builder 4.5.3 on Flutter 3.50.1; 18.1.4 + 4.5.0 on Flutter 3.44.9 (with source_helper <1.4.0); 17.0.0 + 4.1.2 on Flutter 3.32.8"
 ---
 
 # go_router

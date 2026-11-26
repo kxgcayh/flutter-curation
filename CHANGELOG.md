@@ -6,6 +6,8 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-26
+
 ### Added
 
 - **`go-router` skill:** `SKILL.md` plus 7 references (configuration, navigation, redirects and guards, shells, deep links and web, type-safe routes, testing and migration). It includes:
@@ -21,7 +23,7 @@ Each release records, per skill, **when the package's official documentation was
 
 | Skill | Docs read | Sources | Validated against |
 | --- | --- | --- | --- |
-| `go-router` | 2026-11-26 | [flutter/packages](https://github.com/flutter/packages/tree/da586f5/packages/go_router) at `da586f5` (2026-11-25): go_router README, 12 `doc/` topics, `lib/src`, examples, tests, CHANGELOG; pub.dev constraints for go_router, go_router_builder, material_ui, cupertino_ui; docs.flutter.dev deep-linking (2026-11-23), set-up-app-links and set-up-universal-links (2026-11-10), url-strategies (2026-07-21) | go_router 18.1.4 + go_router_builder 4.5.0 on Flutter 3.44.9 (with `source_helper <1.4.0`), and go_router 17.0.0 + go_router_builder 4.1.2 on Flutter 3.32.8: all 22 blocks compile (including generated type-safe routes), and 2 widget tests pass |
+| `go-router` | 2026-11-26 | [flutter/packages](https://github.com/flutter/packages/tree/da586f5/packages/go_router) at `da586f5` (2026-11-25): go_router README, 12 `doc/` topics, `lib/src`, examples, tests, CHANGELOG; pub.dev constraints for go_router, go_router_builder, material_ui, cupertino_ui; docs.flutter.dev deep-linking (2026-11-23), set-up-app-links and set-up-universal-links (2026-11-10), url-strategies (2026-07-21) | go_router 18.1.4 + go_router_builder 4.5.3 on Flutter 3.50.1 (CI, no pin needed); 18.1.4 + builder 4.5.0 on Flutter 3.44.9 (with `source_helper <1.4.0`); 17.0.0 + builder 4.1.2 on Flutter 3.32.8. All 22 blocks compile, including generated type-safe routes, and 2 widget tests pass on each |
 
 ## [0.3.0] - 2026-11-26
 
@@ -88,7 +90,8 @@ First release.
   - `valueOrNull` in 3.x code
   - mismatched manual and generated examples on the motivation and testing pages
 
-[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/kxgcayh/flutter-curation/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/kxgcayh/flutter-curation/releases/tag/v0.1.0
