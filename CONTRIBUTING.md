@@ -33,8 +33,15 @@ skills/<package>/
 ---
 name: <package>          # must match the folder name; lowercase letters, digits and hyphens
 description: <what the skill does and when to use it, under 1024 characters>
+metadata:
+  version: "0.1.0"       # the repo release this skill ships in
+  docs-read: "YYYY-MM-DD" # when the package's official docs were last read
+  docs-source: "<doc URLs, plus repo@commit if you used examples or tests>"
+  validated-against: "<package versions and Flutter SDK the snippets compiled on>"
 ---
 ```
+
+Update `docs-read`, `docs-source` and `validated-against` whenever you re-read the docs or re-validate. The same values go in the release's **Sources** table in [CHANGELOG.md](CHANGELOG.md).
 
 The description decides when an agent loads the skill. Name the package and the tasks it covers. Avoid generic words that would trigger it for unrelated work.
 
@@ -59,6 +66,8 @@ The description decides when an agent loads the skill. Name the package and the 
 - [ ] Added or updated the row in the README's **Available skills** table
 - [ ] Added the skill to a grouping in `skills.sh.json`
 - [ ] Bumped `version` the same way in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json` and `.antigravity-plugin/plugin.json`
+- [ ] Updated the skill's `metadata` (`docs-read`, `docs-source`, `validated-against`)
+- [ ] Added an entry under `## [Unreleased]` in `CHANGELOG.md`, with the sources row for any skill whose docs you re-read
 - [ ] Described the validation you ran (package and SDK versions)
 
 ## Code of Conduct

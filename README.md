@@ -67,6 +67,8 @@ Skills target the current major version of each package, and say when an API nee
 3. Behaviour claims (lifecycles, error handling, retry, version-gated APIs) are checked against the package's own test suite and changelog.
 4. Mistakes found in upstream docs are corrected in the skill, not copied.
 
+Each skill's front matter records when its docs were read (`metadata.docs-read`) and which versions it was validated against. [CHANGELOG.md](CHANGELOG.md) keeps the history per release.
+
 ## Contributing
 
 Bug reports, skill requests and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
