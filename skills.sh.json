@@ -28,6 +28,13 @@
       "skills": [
         "go-router"
       ]
+    },
+    {
+      "title": "Code generation",
+      "description": "Running, configuring and debugging build_runner builders such as json_serializable, freezed and riverpod_generator.",
+      "skills": [
+        "build-runner"
+      ]
     }
   ],
   "notGrouped": "bottom"

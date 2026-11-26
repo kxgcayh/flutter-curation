@@ -1,0 +1,4 @@
+# cases/ are analyzed one by one after their own build (see run.py).
+analyzer:
+  exclude:
+    - cases/**

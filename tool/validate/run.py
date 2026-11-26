@@ -7,7 +7,13 @@ tool/validate/<skill>/extract.py). Uses the `flutter` and `dart` on PATH.
 For each skill it runs `flutter pub get`, extracts the snippets, runs
 build_runner and `dart analyze`, then the smoke tests listed in validate.json.
 Analyzer errors in a fixture listed under "requires" are expected (and
-ignored) when the resolved package is older than "min".
+ignored) when the resolved package is older than "min". validate.json
+"commands" run after the tests, when the resolved package is at least "min";
+with "stale_file", that file is edited first and the command must fail
+without rewriting it.
+A skill whose extract.py writes cases/<name>/ projects (build-runner) gets
+each case built with build_runner (failing on warnings not matched by
+"allowed_warnings") and analyzed.
 """
 import json
 import re
@@ -88,8 +94,69 @@ def analyze_and_test(skill_dir, config):
         print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr[-2000:])
         fail |= r.returncode != 0
 
+    for command in config.get("commands", []):
+        have = versions.get(command["package"]) or resolved(lock, command["package"])
+        if not have or version_tuple(have) < version_tuple(command["min"]):
+            print(f"skipped   {' '.join(command['cmd'])}  (needs {command['package']} {command['min']}; resolved {have})")
+            continue
+        stale = skill_dir / command["stale_file"] if command.get("stale_file") else None
+        original = stale.read_bytes() if stale else None
+        if stale:
+            # Make one output stale; the command must fail and must not rewrite it.
+            stale.write_bytes(original + b"\n// stale edit\n")
+            mutated = stale.read_bytes()
+        try:
+            r = run(command["cmd"], skill_dir)
+            passed = (r.returncode != 0) if stale else (r.returncode == 0)
+            if stale and stale.read_bytes() != mutated:
+                print(f"changed   {command['stale_file']} was rewritten")
+                passed = False
+        finally:
+            if stale:
+                stale.write_bytes(original)
+        if passed:
+            print(f"ok        {command['reason']}")
+        else:
+            print(f"FAILED    {command['reason']} (exit {r.returncode})\n{r.stdout[-3000:]}{r.stderr[-2000:]}")
+            fail = True
+
+    for case in sorted((skill_dir / "cases").glob("*/")):
+        fail |= not build_case(case, config)
+
     print(f"{skill_dir.name}: {'FAILED' if fail else 'ok'}")
     return not fail
+
+
+def build_case(case, config):
+    """Build one cases/<name>/ project and analyze it; warnings fail unless allowed."""
+    if run(["flutter", "pub", "get", "--offline"], case).returncode:
+        r = run(["flutter", "pub", "get"], case)
+        if r.returncode:
+            print(r.stdout[-2000:], r.stderr[-2000:])
+            return False
+    r = run(["dart", "run", "build_runner", "build"], case)
+    out = r.stdout + r.stderr
+    # A warning is its `W ` line plus the indented lines up to the next status line.
+    warnings = re.findall(r"(?ms)^W .*?(?=^(?:[WE] |  \d+s |  Built|  Failed)|\Z)", out)
+    unexpected = [w for w in warnings if not any(a in w for a in config.get("allowed_warnings", []))]
+    ok = r.returncode == 0 and not unexpected
+    for w in unexpected:
+        print(f"warning   {case.name}: {w.strip()}")
+    if r.returncode:
+        print(out[-3000:])
+    a = run(["dart", "analyze", "--format", "machine", "lib"], case)
+    reported = False
+    for line in (a.stdout + a.stderr).splitlines():
+        parts = line.split("|")
+        if len(parts) >= 8 and parts[0] in ("ERROR", "WARNING"):
+            print(f"{parts[0]:7}   {case.name}: {Path(parts[3]).name}:{parts[4]}  {parts[7]}")
+            ok, reported = False, True
+    # A non-zero exit with no parsed ERROR/WARNING (e.g. an analyzer crash) must fail too.
+    if a.returncode and not reported:
+        print(f"analyze   {case.name}: exit {a.returncode}\n{(a.stdout + a.stderr)[-2000:]}")
+        ok = False
+    print(f"case      {case.name}: {'ok' if ok else 'FAILED'}")
+    return ok
 
 
 def main():

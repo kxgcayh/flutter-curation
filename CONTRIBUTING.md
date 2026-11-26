@@ -90,7 +90,7 @@ Each skill has a small Flutter project in `tool/validate/<skill>/`:
 | File | Purpose |
 | --- | --- |
 | `pubspec.yaml` | the packages the examples need, with major-version ranges only, so each SDK resolves its own newest compatible release |
-| `extract.py` | writes each ```` ```dart ```` block to `lib/` or `test/` as a fixture (`<reference>__<n>.dart`). Reuse an existing extractor |
+| `extract.py` | writes each ```` ```dart ```` block to `lib/` or `test/` as a fixture (`<reference>__<n>.dart`). Reuse an existing extractor. `build-runner` instead writes each `build.yaml` block to a `cases/` project |
 | `lib/stubs.dart` | only the app-specific symbols the examples refer to |
 | `validate.json` | configuration (below) |
 
@@ -108,6 +108,9 @@ Generated fixtures, `manifest.json` and lock files are gitignored; keep them out
 | `needs_package` | extractor | `{fixture id: package}`: skip the block when that package isn't in the lock file |
 | `tests` | extractor | fixture ids to write to `test/` with test imports (listing them here doesn't run them; add them to `smoke_tests` too) |
 | `imports` | extractor | `{fixture id: [other fixture ids]}` for blocks that use declarations from another block |
+| `commands` | runner | `[{cmd, package, min, reason}]`: extra commands run in the fixture after the tests, only when the resolved `package` is at least `min` (e.g. `build_runner build --only-check`). With `stale_file`, that file is edited first, and the command must fail and leave it unchanged |
+| `allowed_warnings` | runner | for skills with `cases/`: substrings of build_runner `W` warnings that don't fail a case |
+| `case_files` | extractor (build-runner) | `{case id: [{block, path}]}`: replace a fixture file in that `build.yaml` case with a ```` ```dart ```` block of the skill |
 
 Fixture ids are numbered by position, so update `validate.json` when you add, remove or reorder code blocks.
 

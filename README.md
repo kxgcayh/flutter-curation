@@ -1,6 +1,6 @@
 # Flutter Curation
 
-Agent skills for Riverpod 3.x, Flutter Hooks, Dio 5.x and go_router.
+Agent skills for Riverpod 3.x, Flutter Hooks, Dio 5.x, go_router and build_runner.
 
 Agents often write Flutter code against outdated APIs: Riverpod 2.x syntax in a 3.x project, legacy providers, or examples that no longer compile. Each skill teaches an agent how one package works today: which API to pick, the rules that prevent common bugs, and what changed between versions. Each skill has a short `SKILL.md`, plus reference files that the agent loads only when a task needs them.
 
@@ -78,6 +78,7 @@ cp -R flutter-curation/skills/riverpod .agents/skills/
 | [flutter-hooks](skills/flutter-hooks/SKILL.md) | Write, review or refactor widgets that use `flutter_hooks` (`HookWidget`, `useState`, `useEffect`, `useMemoized`, `useFuture`, controller and animation hooks), write custom hooks, or convert a `StatefulWidget` to hooks. Covers the rules of hooks, how `keys` decide re-runs, and the 0.21.4 move of Material/Cupertino hooks to `material_hooks`/`cupertino_hooks`. | Convert this StatefulWidget with a TextEditingController and an AnimationController to a HookWidget |
 | [dio](skills/dio/SKILL.md) | Write, review, debug or migrate HTTP code that uses `dio` and its plugins: shared `Dio` setup, interceptors and `QueuedInterceptor` token refresh, `DioException` handling, cancellation, uploads and downloads, adapters, certificate checks, and tests that fake the adapter. Covers dio 4.x → 5.x and the APIs deprecated before 6.0. | Add a dio interceptor that refreshes the access token on 401 and retries the request once |
 | [go-router](skills/go-router/SKILL.md) | Set up, write, review or migrate Flutter navigation with `go_router`: routes and parameters, `go` vs `push`, auth redirects with `refreshListenable`, `onEnter` guards, `StatefulShellRoute` tabs, deep links (App Links, universal links), web URLs, transitions, `go_router_builder` type-safe routes, and widget tests. Covers breaking versions 14 → 18. | Add bottom navigation with two tabs that keep their own stacks, and redirect signed-out users to /login |
+| [build-runner](skills/build-runner/SKILL.md) | Run, configure and debug code generation with `build_runner`: `build` / `watch` / `clean` / `stop`, `build.yaml` (`generate_for`, builder options, `global_options`, the shared `.g.dart` file and output folders), missing `part` directives, analyzer version conflicts, slow builds, and CI checks with `--only-check` or `git diff`. Flags and behaviour per build_runner version, and which version each Flutter SDK resolves. | Builds take 40 seconds and CI keeps failing on stale .g.dart files; fix both |
 
 ## Compatibility
 

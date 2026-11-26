@@ -16,4 +16,6 @@ Each `<skill>/` folder is a small Flutter project:
 | `pubspec.yaml` | major-version ranges only, so each SDK resolves its own newest compatible release |
 | `validate.json` | `smoke_tests` to execute, and `requires`: fixtures expected to fail below a package version |
 
-Generated fixtures, `manifest.json` and `pubspec.lock` are gitignored.
+`build-runner/` is different: its skill is mostly YAML. `extract.py` turns each `build.yaml` block into `cases/<reference>__<n>/`, a copy of the fixture with that block as its `build.yaml`. `run.py` builds each case, fails on build_runner warnings not listed in `allowed_warnings` (an unknown builder key, a missing `part`), and analyzes the output. `commands` adds `build_runner build --only-check` where build_runner 2.16+ resolves.
+
+Generated fixtures, `cases/`, `manifest.json` and `pubspec.lock` are gitignored.

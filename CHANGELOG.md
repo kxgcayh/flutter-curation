@@ -6,6 +6,20 @@ Each release records, per skill, **when the package's official documentation was
 
 ## [Unreleased]
 
+### Added
+
+- **`build-runner` skill:** `SKILL.md` plus 4 references (commands, build.yaml, troubleshooting, CI and source control). It includes:
+  - flags and behaviour per build_runner version: `-d` ignored since 2.7, AOT builders and `stop` in 2.14, `--only-check` and auto-reverted hand edits in 2.16
+  - which version Flutter apps actually resolve: Flutter pins `meta`, so a Flutter app on Flutter 3.44 (and 3.32) gets build_runner 2.15.1, while a pure Dart package on the same SDK gets 2.17.1
+  - `build.yaml`: builder keys, `generate_for`, options, `global_options`, the `combining_builder` (`ignore_for_file`, `preamble`, generating into `lib/generated/`), extra sources, `-c` configs
+  - troubleshooting from reproduced runs: missing `part` directives, unknown builder keys, generator errors deleting the failed part, version-solving chains
+  - CI checks with `--only-check`, or `git diff` before 2.16; generators ignoring `formatter: page_width`; publishing ignored generated files with `.pubignore`; `--workspace`
+- **Validation of `build.yaml` blocks:** each one is built in its own project, failing on build_runner warnings, and the output is analyzed. `run.py` gained `commands` and `cases/` support.
+
+### Changed
+
+- **`riverpod` and `go-router`:** link to the build-runner skill for build configuration, version conflicts and CI.
+
 ## [0.4.0] - 2026-11-26
 
 ### Added

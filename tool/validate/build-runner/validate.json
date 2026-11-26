@@ -1,0 +1,50 @@
+{
+  "report": [
+    "build_runner",
+    "json_serializable",
+    "json_annotation",
+    "source_gen",
+    "analyzer"
+  ],
+  "smoke_tests": [
+    "test/person_test.dart"
+  ],
+  "case_files": {
+    "build-yaml__4": [
+      {
+        "block": "build-yaml__5",
+        "path": "lib/models/person.dart"
+      }
+    ]
+  },
+  "allowed_warnings": [
+    "allows versions before"
+  ],
+  "commands": [
+    {
+      "cmd": [
+        "dart",
+        "run",
+        "build_runner",
+        "build",
+        "--only-check"
+      ],
+      "package": "build_runner",
+      "min": "2.16.0",
+      "reason": "generated files on disk match a fresh build"
+    },
+    {
+      "cmd": [
+        "dart",
+        "run",
+        "build_runner",
+        "build",
+        "--only-check"
+      ],
+      "package": "build_runner",
+      "min": "2.16.0",
+      "stale_file": "lib/models/person.g.dart",
+      "reason": "--only-check fails on a stale output and leaves it unchanged"
+    }
+  ]
+}
