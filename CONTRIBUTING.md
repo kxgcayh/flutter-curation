@@ -58,7 +58,7 @@ The description decides when an agent loads the skill. Name the package and the 
 - [ ] Skill folder name matches `name` in its front matter
 - [ ] Added or updated the row in the README's **Available skills** table
 - [ ] Added the skill to a grouping in `skills.sh.json`
-- [ ] Bumped `version` the same way in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json` and `.cursor-plugin/plugin.json`
+- [ ] Bumped `version` the same way in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json` and `.antigravity-plugin/plugin.json`
 - [ ] Described the validation you ran (package and SDK versions)
 
 ## Code of Conduct

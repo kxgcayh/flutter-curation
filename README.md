@@ -4,7 +4,7 @@ Curated agent skills for popular Flutter packages.
 
 Agents often write Flutter code against outdated APIs: Riverpod 2.x syntax in a 3.x project, legacy providers, or examples that no longer compile. Each skill here teaches an agent how one package works today: which API to pick, the rules that prevent common bugs, and what changed between versions. Each skill has a short `SKILL.md` with detailed reference files that the agent loads only when a task needs them.
 
-The skills work in Claude Code, Codex, Cursor and any agent that supports [Agent Skills](https://skills.sh).
+The skills work in Claude Code, Codex, Cursor, Antigravity and any agent that supports [Agent Skills](https://skills.sh).
 
 ## Installation
 
@@ -29,10 +29,21 @@ cp -R flutter-curation/skills/riverpod ~/.agents/skills/
 
 Add this repository as a Cursor plugin. It ships `.cursor-plugin/plugin.json`, which points at `skills/`.
 
+### Antigravity (agy CLI and IDE)
+
+Install the plugin from GitHub. It goes into `~/.gemini/config/plugins/` and loads in both the CLI and the IDE:
+
+```sh
+agy plugin install https://github.com/kxgcayh/flutter-curation
+```
+
+`agy plugin install` needs the full HTTPS URL; the `owner/repo` shorthand doesn't work. Antigravity can't add this repo as a marketplace. Alternatively, use skills.sh below, which installs to `.agents/skills/` in a project, or `~/.gemini/config/skills/` with `-g`.
+
 ### skills.sh
 
 ```sh
-npx skills add kxgcayh/flutter-curation
+npx skills add kxgcayh/flutter-curation      # this project
+npx skills add kxgcayh/flutter-curation -g   # all projects
 ```
 
 ### Manual
