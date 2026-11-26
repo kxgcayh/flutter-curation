@@ -1,0 +1,18 @@
+name: check
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  repo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Manifests, front matter, skill registry, changelog, links
+        run: python3 tool/check.py

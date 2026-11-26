@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows [Kee
 
 Each release records, per skill, **when the package's official documentation was read** and **which package versions the skill was validated against**. A skill is only as current as its sources: if a package has released since the date below, check its changelog for anything the skill doesn't cover yet.
 
+## [Unreleased]
+
+### Added
+
+- **CI:** `check` runs `tool/check.py` on every PR and push. It covers manifest JSON and version sync, `SKILL.md` front matter and `metadata`, registration in the README and `skills.sh.json`, a changelog entry for the version, and links and code fences.
+- **CI:** `validate-skills` runs `tool/validate/run.py` on PRs that touch `skills/` or `tool/validate/`, and weekly. It compiles every Dart code block and runs the smoke tests on the latest stable Flutter and on Flutter 3.32.8.
+
 ## [0.1.0] - 2026-11-26
 
 First release.
@@ -31,4 +38,5 @@ First release.
   - `valueOrNull` in 3.x code
   - mismatched manual and generated examples on the motivation and testing pages
 
+[Unreleased]: https://github.com/kxgcayh/flutter-curation/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/kxgcayh/flutter-curation/releases/tag/v0.1.0

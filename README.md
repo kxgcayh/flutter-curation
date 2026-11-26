@@ -70,7 +70,7 @@ Skills target the current major version of each package, and say when an API nee
 ## How skills are made
 
 1. Each skill is written from the package's official documentation, and keeps the upstream syntax for both manual and code-generated variants.
-2. Every Dart code block is compiled against the latest published packages, with `build_runner` and `dart analyze`, and against the oldest Flutter SDK the skill supports.
+2. Every Dart code block is compiled against the latest published packages, with `build_runner` and `dart analyze`, and against the oldest Flutter SDK the skill supports. CI repeats this on every pull request and weekly (see `tool/validate/`).
 3. Behaviour claims (lifecycles, error handling, retry, version-gated APIs) are checked against the package's own test suite and changelog.
 4. Mistakes found in upstream docs are corrected in the skill, not copied.
 

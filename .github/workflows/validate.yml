@@ -1,0 +1,46 @@
+name: validate-skills
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "tool/validate/**"
+      - ".github/workflows/validate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - "tool/validate/**"
+      - ".github/workflows/validate.yml"
+  schedule:
+    - cron: "0 3 * * 1" # weekly, Monday 03:00 UTC: catches new package releases
+  workflow_dispatch:
+
+jobs:
+  snippets:
+    name: snippets (Flutter ${{ matrix.label }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: latest stable
+            channel: stable
+            flutter-version: ""
+          - label: "3.32.8 (oldest supported)"
+            channel: stable
+            flutter-version: "3.32.8"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ matrix.channel }}
+          flutter-version: ${{ matrix.flutter-version }}
+          cache: true
+      - run: flutter --version
+      - name: Compile every Dart code block and run smoke tests
+        run: python3 tool/validate/run.py

@@ -55,6 +55,18 @@ The description decides when an agent loads the skill. Name the package and the 
 
 ### Validation before opening a PR
 
+CI runs both checks below on every pull request. Run them locally first:
+
+```sh
+python3 tool/check.py            # manifests, front matter, skill registry, changelog, links (seconds)
+python3 tool/validate/run.py     # compiles every Dart code block with the flutter on your PATH (minutes)
+```
+
+`tool/validate/<skill>/` holds a skill's validation project: `extract.py` turns each code block into a fixture file, `lib/stubs.dart` provides app-specific types, and `validate.json` lists smoke tests plus fixtures that need a newer package than the oldest supported SDK resolves. When you add, remove or reorder code blocks in a skill, update `extract.py`'s per-block wrappers to match. CI also runs the compile check on the oldest supported Flutter SDK, and weekly against the latest stable, to catch new package releases.
+
+The checks enforce these rules:
+
+
 - **Every Dart code block compiles** against the latest published package (`dart run build_runner build` and `dart analyze` with no issues), using only minimal stubs for app-specific types. Fragments may be wrapped in a function or widget for compiling.
 - **If the skill names an oldest supported SDK, compile there too.**
 - **Behaviour claims are backed:** cite the upstream doc page, a test in the package's repository, or the changelog in your PR description.

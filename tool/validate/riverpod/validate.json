@@ -1,0 +1,13 @@
+{
+  "smoke_tests": [
+    "test/scopes-and-testing__7.dart",
+    "test/scopes-and-testing__11.dart"
+  ],
+  "requires": {
+    "lib/lifecycle-and-caching__8.dart": {
+      "package": "riverpod",
+      "min": "3.3.2",
+      "reason": "container.allProviders(family:) was added in Riverpod 3.3.2"
+    }
+  }
+}
