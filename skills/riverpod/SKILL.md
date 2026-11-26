@@ -24,6 +24,22 @@ Read `pubspec.yaml` (and `pubspec.lock` when present) and match the project's ex
 - **New project, no preference given:** for Flutter, use manual syntax with `flutter_riverpod`. For pure Dart, use `riverpod`. Consider adding the optional `riverpod_lint` plugin. Setup details are in [flutter-and-hooks.md](references/flutter-and-hooks.md).
 - **After editing `@riverpod` code,** run `dart run build_runner build` (or check that `watch` is running). Never hand-edit `.g.dart` files.
 
+### Version compatibility
+
+The project's Dart SDK limits which Riverpod release it can use. Run `dart --version` (or read `pubspec.lock`) before using APIs newer than 3.0. Newest stable sets as of 2026-11, checked on pub.dev:
+
+| Dart SDK (e.g. Flutter) | Manual providers | With code generation | riverpod_lint |
+| --- | --- | --- | --- |
+| 3.8 (Flutter 3.32) | riverpod 3.3.2 | riverpod 3.1.0 + riverpod_generator 4.0.0+1 + riverpod_annotation 4.0.0 | 3.1.0 |
+| 3.9 | 3.3.2 | 3.3.2 + generator 4.0.4 + annotation 4.0.3 | 3.1.0 |
+| 3.10 – 3.11 | 3.3.2 | 3.3.2 + generator 4.0.4 + annotation 4.0.3 | 3.1.4 |
+| 3.12 (Flutter 3.44) | 3.5.0 | 3.5.0 + generator 4.0.10 + annotation 4.0.8 | 3.1.8 |
+| 3.13+ | 3.5.0 | 3.5.0 + generator 4.0.10 + annotation 4.0.8 | 3.2.0 |
+
+- **The generator pins Riverpod exactly** (through `riverpod_annotation`), so with code generation the generator decides the Riverpod version. On Dart 3.8 that caps the project at 3.1.0.
+- **Version-gated APIs used in this skill:** `asReload:` (3.0+), `weak:` on `WidgetRef.listen`/`listenManual` (3.2+), `container.allProviders(family:)` and the mutation reset fix (3.3.2+), `ProviderDisposedException` from `.future` (3.5+). On older versions, use the fallback each reference gives.
+- **If pub picks a `-dev` generator,** the constraints are left open on an old SDK. Pin `riverpod_generator`/`riverpod_annotation` to the row above instead.
+
 ## Step 2: choose the provider
 
 |  | Sync | Future | Stream |

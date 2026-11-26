@@ -21,12 +21,21 @@ Some APIs are newer than 3.0. For example, `container.allProviders(family:)` nee
 
 ### riverpod_lint
 
-`riverpod_lint` is installed as an analysis_server_plugin, in `analysis_options.yaml` (not `dev_dependencies`). Under `plugins:`, set `riverpod_lint` to a real version constraint compatible with the project (check pub.dev):
+`riverpod_lint` 3.1.0+ is installed as an analysis_server_plugin, in `analysis_options.yaml` (not `dev_dependencies`). Pick the version that matches the project's Dart SDK:
+
+| Dart SDK | riverpod_lint |
+| --- | --- |
+| 3.8 – 3.9 | `3.1.0` |
+| 3.10 – 3.11 | `3.1.4` |
+| 3.12 | `3.1.8` |
+| 3.13+ | `3.2.0` (latest as of 2026-11) |
 
 ```yaml
 plugins:
-  riverpod_lint: ^3.2.0 # latest on pub.dev as of 2026-11; check for newer
+  riverpod_lint: 3.1.0 # Dart 3.8 / Flutter 3.32; see the table above
 ```
+
+Each lint release depends on one exact Riverpod version (3.1.0 → riverpod 3.1.0, 3.2.0 → riverpod 3.5.0). Prefer the row that matches your SDK rather than the newest release. Versions before 3.1.0 used `custom_lint` in `dev_dependencies` instead.
 
 It catches missing scoped dependencies, unstable family parameters, an unused `ref.refresh` result and more. It also adds IDE refactors such as "Convert to ConsumerWidget".
 
